@@ -29,4 +29,13 @@ if __name__ == '__main__':
 
     env_ok,env_msg = check_env()
     if not env_ok:
-        logger.error(f"检查shiba")
+        logger.error(f"环境检查失败: {env_msg}")
+        app = QApplication(None,"环境错误",env_msg)
+        sys.exit(1)
+    logger.info(env_msg)
+
+    #；启动窗口
+    app = QApplication(sys.argv)
+    winodw = MainWindow()
+    winodw.show()
+    sys.exit(app.exit_())
